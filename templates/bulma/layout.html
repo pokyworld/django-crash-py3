@@ -1,0 +1,25 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pollster | {{title}} </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.8.0/css/bulma.min.css">
+    <link rel="shortcut icon" href="{% static '/favicon.ico' %}" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/cfc6ed36db.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    {%include 'bulma/partials/_navbar.html'%}
+    <div class="section" style="padding-bottom: 0.5rem;">
+        <div class="container">
+            <div class="columns is-centered">
+                <div class="column is-half-desktop is-two-thirds-tablet">
+                    {%block content%}{%endblock%}
+                </div>
+            </div>
+            <hr/>
+        </div>
+    </div>
+</body>
+</html>

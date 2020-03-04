@@ -1,0 +1,29 @@
+{%extends 'bulma/layout.html'%}
+
+{%block content%}
+<style>.buttons .button { flex: 1; text-align: center;} .buttons .button:last-child { flex: 3; margin-left: 0.5rem; }</style>
+<h4 class="title is-4">{{ question.question_text }}</h4>
+{% if error_message %}
+<p class="notification is-danger is-small"><button class="delete" onclick="this.parentNode.classList.add('is-hidden');"></button><strong>{{ error_message }}</strong></p>
+{% endif %}
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    <ul class="list control">
+        {% for choice in question.choice_set.all %}
+        <li class="list-item is-5">
+            <label class="radio" for="choice{{ forloop.counter }}">
+                <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}">
+                {{ choice.choice_text }}
+            </label>
+        </li>
+        {% endfor %}
+    </ul>
+    <div class="subtitle buttons">
+        <a class="button is-link is-outlined" href="{% url 'polls:index' %}">
+            <i class="fas fa-chevron-left"></i>
+            <i class="fas fa-chevron-left" style="margin-left: -3px !important;"></i>
+            &nbsp;Back to Polls</a>
+        <input type="submit" value="Vote" class="button is-link">
+    </div>
+</form>
+{%endblock%}

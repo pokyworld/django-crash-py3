@@ -1,0 +1,41 @@
+{%extends 'bootstrap/layout.html'%}
+
+{%block content%}
+<style>
+    .buttons .btn {
+        flex: 1;
+        text-align: center;
+    }
+
+    .buttons .btn:last-child {
+        flex: 3;
+        margin-left: 0.5rem;
+    }
+</style>
+<h3 class="text-center mb-3">{{ question.question_text }}</h3>
+{% if error_message %}
+<p class="alert alert-danger"><strong>{{ error_message }}</strong></p>
+{% endif %}
+<form action="{% url 'polls:vote' question.id %}" method="post">
+    {% csrf_token %}
+    <ul class="list-group mb-3">
+        {% for choice in question.choice_set.all %}
+        <li class="list-group-item">
+            <div class="form-check">
+                <input type="radio" name="choice" id="choice{{forloop.counter}}" value="{{choice.id}}"
+                    class="form-check-input">
+                <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label>
+            </div>
+        </li>
+        {% endfor %}
+        <div class="buttons d-flex mt-4">
+            <a class="btn btn-outline-primary" href="{% url 'polls:index' %}">
+                <i class="fas fa-chevron-left"></i>
+                <i class="fas fa-chevron-left" style="margin-left: -5px !important;"></i>
+                &nbsp;Back to Polls</a>
+            <input type="submit" value="Vote" class="btn btn-primary">
+        </div>
+    </ul>
+</form>
+
+{%endblock%}

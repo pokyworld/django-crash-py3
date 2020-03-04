@@ -1,0 +1,9 @@
+{%extends 'bootstrap/layout.html'%}
+
+{%block content%}
+<div class="card text-center">
+    <h2>Welcome to Pollster</h2>
+    <p>This is an example Django Polling app</p>
+    <a href="{% url 'polls:index'%}" class="btn btn-primary btn-block">View available Polls</a>
+</div>
+{%endblock%}

@@ -1,0 +1,21 @@
+{% extends 'bulma/layout.html' %}
+
+{% block content %}
+<style>.buttons .button { flex: 1;} .buttons .button:first-child { flex: 3;}</style>
+<h4 class="title is-4 has-text-center">{{ question.question_text }}</h4>
+<ul class="list">
+    {% for choice in question.choice_set.all %}
+    <li class="list-item is-5">
+        {{ choice.choice_text }}&nbsp;<span
+            class="tag is-link is-pulled-right">{{ choice.votes }}&nbsp;vote{{ choice.votes | pluralize }}</span>
+    </li>
+    {% endfor %}
+</ul>
+<div class="buttons">
+    <a class="button is-link" href="{% url 'polls:index' %}">
+        <i class="fas fa-chevron-left"></i>
+        <i class="fas fa-chevron-left" style="margin-left: -3px !important;"></i>
+        &nbsp;Back to Polls</a>
+    <a class="button is-link is-outlined" href="{% url 'polls:detail' question.id %}">Vote again ?</a>
+</div>
+{% endblock %}subtitle

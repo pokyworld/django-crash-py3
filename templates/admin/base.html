@@ -1,0 +1,15 @@
+{% extends 'admin/base.html' %}
+    {% load static %}
+    {% block javascripts %}
+        {{ block.super }}
+    <script type="text/javascript" src="{% static 'app/js/action.js' %}"></script>
+
+    {% endblock %}
+
+    {% block extrahead %}
+        <link rel="shortcut icon" href="{% static '/favicon.ico'  %}" />
+    {% endblock %}
+    {% block stylesheets %}
+
+        {{ block.super }}
+    {% endblock %}

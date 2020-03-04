@@ -1,0 +1,20 @@
+{% extends 'bootstrap/layout.html' %}
+
+{% block content %}
+<style>.buttons .btn { flex: 1; text-align: center;} .buttons .btn:first-child { flex: 3; margin-right: 0.5rem; }</style>
+<h3 class="text-center mt-5 mb-3">{{ question.question_text }}</h3>
+<ul class="list-group mb-3">
+    {% for choice in question.choice_set.all %}
+    <li class="list-group-item">
+        {{ choice.choice_text }}&nbsp;<span class="badge badge-primary float-right">{{ choice.votes }}&nbsp;vote{{ choice.votes | pluralize }}</span>
+    </li>
+    {% endfor %}
+</ul>
+<div class="buttons d-flex">
+    <a class="btn btn-primary my-3 mx-2" href="{% url 'polls:index' %}">
+        <i class="fas fa-chevron-left"></i>
+        <i class="fas fa-chevron-left" style="margin-left: -5px !important;"></i>
+        &nbsp;Back to Polls</a>
+    <a href="{% url 'polls:detail' question.id %}" class="btn btn-outline-primary my-3 mx-2">Vote again ?</a>
+</div>
+{% endblock %}

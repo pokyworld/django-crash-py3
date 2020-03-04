@@ -1,0 +1,22 @@
+{%extends 'bulma/layout.html'%}
+
+{%block content%}
+<style>.buttons .button { flex: 1;} .buttons .button:first-child { flex: 3;}</style>
+<h2 class="title is-2 has-text-centered">{{ title }}</h2>
+  {% if latest_question_list %}
+    {% for question in latest_question_list %}
+      <div class="card">
+        <div class="card-content">
+          <h4 class="title is-4">{{ question.question_text }}</h4>
+          <div class="title buttons">
+            <a href="{% url 'polls:detail' question.id %}" class="button is-link">Vote Now</a>
+            <a href="{% url 'polls:results' question.id %}" class="button is-link is-outlined">Results</a>
+          </div>
+
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No polls available</p>
+  {% endif %}
+{%endblock%}

@@ -1,0 +1,12 @@
+{%extends 'bulma/layout.html'%}
+
+{%block content%}
+<h2 class="title is-2 has-text-centered">Welcome to Pollster</h2>
+<div class="card has-text-centered">
+    <div class="card-content">
+        <p class="">This is an example Django Polling app</p>
+        <div class="clearfix">&nbsp;</div>
+        <a href="{% url 'polls:index'%}" class="button is-link is-fullwidth">View available Polls</a>
+    </div>
+</div>
+{%endblock%}

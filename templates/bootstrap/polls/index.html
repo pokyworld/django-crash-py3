@@ -1,0 +1,22 @@
+{%extends 'bootstrap/layout.html'%}
+
+{%block content%}
+<style>.buttons .btn { flex: 1; text-align: center;} .buttons .btn:first-child { flex: 3; margin-right: 0.5rem; }</style>
+<h1 class="text-center mb-3">{{ title }}</h1>
+  {% if latest_question_list %}
+    {% for question in latest_question_list %}
+      <div class="card mb-3">
+        <div class="card-body">
+          <p class="lead">{{ question.question_text }}</p>
+          <div class="buttons d-flex">
+            <a href="{% url 'polls:detail' question.id %}" class="btn btn-primary">Vote Now</a>
+            <a href="{% url 'polls:results' question.id %}" class="btn btn-outline-primary">Results</a>
+          </div>
+
+        </div>
+      </div>
+    {% endfor %}
+  {% else %}
+    <p>No polls available</p>
+  {% endif %}
+{%endblock%}
